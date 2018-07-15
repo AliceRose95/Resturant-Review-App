@@ -24,9 +24,9 @@ initMap = () => {
       L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.jpg70?access_token={mapboxToken}', {
         mapboxToken: 'pk.eyJ1IjoiYWxpY2Vyb3NlOTUiLCJhIjoiY2pqMnF0ejA0MTJ2eDNxbWh1eW00d3hlYyJ9.RIDpO46Oi_kxnP6YJvzcTA',
         maxZoom: 18,
-        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+        /*attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
           '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-          'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+          'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',*/
         id: 'mapbox.streets'
       }).addTo(newMap);
       fillBreadcrumb();
@@ -89,6 +89,9 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   const image = document.getElementById('restaurant-img');
   image.className = 'restaurant-img'
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  let altText = document.createAttribute('alt');
+  altText.value = restaurant.name;
+  image.setAttributeNode(altText);
 
   const cuisine = document.getElementById('restaurant-cuisine');
   cuisine.innerHTML = restaurant.cuisine_type;
